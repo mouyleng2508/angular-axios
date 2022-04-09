@@ -1,0 +1,82 @@
+<div class="m-5">
+  <!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Navbar</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Link</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              Dropdown
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="#">Action</a></li>
+              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled">Disabled</a>
+          </li>
+        </ul>
+        <form class="d-flex">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+      </div>
+    </div>
+  </nav> -->
+
+  <body class="d-flex justify-content-between">
+    <h4>This is a Todo list page which fetch from <span><a target="_blank"
+          href="https://jsonplaceholder.typicode.com/">jsonplaceholder</a></span></h4>
+    <button type="button" (click)="getDataFromAPI()" class="btn btn-secondary">Show Data</button>
+  </body>
+
+  <div class="input-group flex-nowrap p-4" *ngIf="showData == true">
+    <input class="form-control" aria-label="Username" type="text" name="search" [(ngModel)]="searchText"
+      placeholder="Search here . . ." aria-describedby=" addon-wrapping">
+  </div>
+
+  <div class="d-flex justify-content-center m-5">
+    <table class="table table-bordered table-striped table-hover">
+      <thead>
+        <tr>
+          <th scope="col" class="text-center">id</th>
+          <th scope="col">Title</th>
+          <th scope="col" class="text-center">Status</th>
+          <th scope="col" class="text-center">UserId</th>
+        </tr>
+      </thead>
+      <tbody *ngIf="todoData.length">
+        <tr *ngFor="let todo of todoData | filter:searchText">
+          <th scope="row" class="text-center">{{todo.id}}</th>
+          <td>{{todo.title}}</td>
+          <td *ngIf="!todo.completed==true" class="text-center "><span
+              class="badge bg-warning text-dark">Complete</span></td>
+          <td *ngIf="!todo.completed==false" class="text-center "><span class="badge bg-success ">In Progress</span>
+          </td>
+          <td class="text-center">{{todo.userId}}</td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+
+
+
+  <router-outlet></router-outlet>
+</div>
